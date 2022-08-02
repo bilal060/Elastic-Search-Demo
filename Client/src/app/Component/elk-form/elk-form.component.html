@@ -1,0 +1,52 @@
+<!-- <div class="container py-4 d-flex align-items-center justify-content-center">
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Enter Keyword</label>
+      <input
+        (change)="searchByKey($event)"
+        type="text"
+        class="form-control"
+        placeholder="Enter Keyword"
+      />
+    </div>
+
+  </form>
+</div> -->
+
+
+
+<form  (ngSubmit)="SubmitForm()" [formGroup]="exform" class="example d-flex my-3" action="/action_page.php" style=" margin:auto;max-width:900px">
+  <ejs-multiselect formControlName="Category" id='multiselectelement' [dataSource]='categories' width="200" popupHeight="500" [placeholder]='placeholder'></ejs-multiselect>
+
+  <input type="text" formControlName="Query" placeholder="Search.."  class='search' name="search2">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>

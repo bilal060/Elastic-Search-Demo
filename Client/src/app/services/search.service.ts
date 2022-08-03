@@ -20,9 +20,9 @@ export class SearchService {
       )}&filters=${JSON.stringify(filters)}`
     );
   }
-  getAllCategories() {
+  getAllCategories(index:any) {
     return this.https.get(
-      'http://localhost:3333/category/categories_data/_doc'
+      `http://localhost:3333/category/${index}/_doc`
     );
   }
 }

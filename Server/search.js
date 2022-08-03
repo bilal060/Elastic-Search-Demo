@@ -4,7 +4,6 @@ const client = new Client({ node: "http://localhost:9200" });
 const phraseSearch = async (_index, _type, filters, searchValue) => {
   const hits = [];
   let object = {};
-  console.log(object)
   if (filters) {
     object = {
       bool: {
@@ -28,8 +27,6 @@ const phraseSearch = async (_index, _type, filters, searchValue) => {
     index: _index,
     query: object,
   };
-  console.log(_index);
-  // console.log(query);
   const searchResult = await client
     .search(query)
     .catch((e) => console.log("errr", e));

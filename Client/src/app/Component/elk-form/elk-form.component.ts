@@ -26,22 +26,17 @@ export class ElkFormComponent implements OnInit {
   // set placeholder to MultiSelect input element
   public placeholder: string = 'Select Category';
   SubmitForm() {
-    console.log(this.exform.value);
     console.clear()
     this.search
       .searchByKey('sample_catalog', this.exform.value)
       .subscribe((data: any) => {
-        console.log(data.hits.map((hit: any) => {
-          return hit._source;
-        }));
         this.searchResult = data.hits.map((hit: any) => {
           return hit._source;
         });
       });
   }
   searchByKey(event: any) {
-    this.search.searchByKey('hello', event.target.value).subscribe((data) => {
-      console.log(data);
+    this.search.searchByKey('categories_data', event.target.value).subscribe((data) => {
     });
   }
 

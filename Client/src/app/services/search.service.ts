@@ -9,7 +9,7 @@ export class SearchService {
 
   searchByKey(index: any, data: any) {
     let searchValue = {ShortDescription: data?.Query};
-    let filters = { Category: ['Parts'] };
+    let filters = { Category: data?.Category };
     // let _index = 'category';
     // let _type = '_doc';
 

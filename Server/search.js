@@ -1,18 +1,38 @@
-const { Client } = require('@elastic/elasticsearch');
-const client = new Client({ node: 'http://localhost:9200' });
+const { Client } = require("@elastic/elasticsearch");
+const client = new Client({ node: "http://localhost:9200" });
 
-const phraseSearch = async (_index, _type, phrase) => {
+const phraseSearch = async (_index, _type, filters, searchValue) => {
   const hits = [];
-  // only string values are searchable
+  let object = {};
+  console.log(object)
+  if (filters) {
+    object = {
+      bool: {
+        filter: [
+          {
+            terms: filters,
+          },
+          {
+            match: searchValue,
+          },
+        ],
+      },
+    };
+  } else {
+    object = {
+      match: searchValue,
+    };
+  }
+
+  let query = {
+    index: _index,
+    query: object,
+  };
+  console.log(_index);
+  // console.log(query);
   const searchResult = await client
-    .search({
-      index: _index,
-        query: {
-          match: { 
-            OriginCityName : phrase
-      }}
-    })
-    .catch((e) => console.log('errr', e));
+    .search(query)
+    .catch((e) => console.log("errr", e));
   if (
     searchResult &&
     searchResult.hits &&
@@ -33,9 +53,10 @@ const categorySearch = async (_index, _type) => {
   // only string values are searchable
   const searchResult = await client
     .search({
-      index: _index
+      index: _index,
+      size: 6942
     })
-    .catch((e) => console.log('errr', e));
+    .catch((e) => console.log("errr", e));
   if (
     searchResult &&
     searchResult.hits &&
@@ -51,8 +72,7 @@ const categorySearch = async (_index, _type) => {
   };
 };
 
-
 module.exports = {
   phraseSearch,
-  categorySearch
+  categorySearch,
 };

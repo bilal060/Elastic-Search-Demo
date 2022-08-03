@@ -13,40 +13,93 @@
   </form>
 </div> -->
 
+<form
+  (ngSubmit)="SubmitForm()"
+  [formGroup]="exform"
+  class="example d-flex my-3"
+  action="/action_page.php"
+  style="margin: auto; max-width: 900px"
+>
+  <ejs-multiselect
+    height="50px"
+    formControlName="Category"
+    id="multiselectelement"
+    [dataSource]="categories"
+    width="200"
+    popupHeight="500"
+    [placeholder]="placeholder"
+  ></ejs-multiselect>
 
-
-<form  (ngSubmit)="SubmitForm()" [formGroup]="exform" class="example d-flex my-3" action="/action_page.php" style=" margin:auto;max-width:900px">
-  <ejs-multiselect formControlName="Category" id='multiselectelement' [dataSource]='categories' width="200" popupHeight="500" [placeholder]='placeholder'></ejs-multiselect>
-
-  <input type="text" formControlName="Query" placeholder="Search.."  class='search' name="search2">
+  <input
+    type="text"
+    formControlName="Query"
+    placeholder="Search.."
+    class="search"
+    name="search2"
+  />
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+
+<!-- COO: "JP"
+COOName: "Japan"
+CatalogPage: 0
+Category: "Parts"
+CustomerPrice: 306.75
+Family: "Replacement Parts"
+GraingerWebLink: "https://www.grainger.com/Grainger/items/31TY71"
+HazmatFlag: "N"
+LeadTime: 1
+List Price: 322.89
+LongDescription: "Coffing Bottom Block Assembly For Use With Mfr Model Number 08903W 08910W 08917W 08921W 08925W 08932W Fits Brand CM"
+MSDSIndicator: "N"
+MfgName: "COFFING"
+MfgPartNumber: "LHH5047U"
+MinimumShipQty: 1
+PartNumber: "31TY71"
+Segment: "Material Handling"
+ShortDescription: "Coffing Bottom Block Assembly"
+UOMName: "EA"
+UOMQty: 1
+URLImage: "https://static.grainger.com/rp/s/is/image/Grainger/31TY71_AS01?$S7PRODUCT$" -->
+
+<div class="container">
+  <table class="table table-hover w-100">
+    <thead>
+      <tr>
+        <th>COO</th>
+
+        <th>COO Name</th>
+
+        <th>Catalog Page</th>
+
+        <th>Category</th>
+
+        <th>Customer Price</th>
+        <th>MSDS Indicator</th>
+        <th>Mfg Name</th>
+        <th>Mfg Part Number</th>
+
+        <th>Part Number</th>
+        <th>Short Description</th>
+        <th>UOM Name</th>
+     
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let item of searchResult">     
+        <td>{{item.COO}}</td>
+        <td>{{item.COOName}}</td>
+        <td>{{item.CatalogPage}}</td>
+        <td>{{item.Category}}</td>
+        <td>{{item.CustomerPrice}}</td>
+        <td>{{item.MSDSIndicator}}</td>
+        <td>{{item.MfgName}}</td>
+        <td>{{item.MfgPartNumber}}</td>
+        <td>{{item.PartNumber}}</td>
+        <td>{{item.ShortDescription}}</td>
+        <td>{{item.UOMName}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

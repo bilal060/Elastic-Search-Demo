@@ -8,30 +8,38 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ElkFormComponent implements OnInit {
   exform: FormGroup;
-  categories:any;
+  categories: any;
+  searchResult: any;
   constructor(private search: SearchService) {
-
     this.exform = new FormGroup({
       Category: new FormControl(''),
       Query: new FormControl(),
-     
     });
-    this.search.getAllCategories().subscribe((res:any)=>{
-    this.categories =  res?.hits?.map((hits:any)=>{
-        return hits._source?.name
-       })
-    })
+    this.search.getAllCategories().subscribe((res: any) => {
+      this.categories = res?.hits?.map((hits: any) => {
+        return hits._source?.name;
+      });
+    });
   }
-  
-// defined the array of data
-public data: string[] = ['Badminton', 'Cricket', 'Football', 'Golf', 'Tennis'];
-// set placeholder to MultiSelect input element
-public placeholder: string = 'Select Category';
-  SubmitForm(){
-    console.log(this.exform.value)
+
+  // defined the array of data
+  // set placeholder to MultiSelect input element
+  public placeholder: string = 'Select Category';
+  SubmitForm() {
+    console.log(this.exform.value);
+    console.clear()
+    this.search
+      .searchByKey('sample_catalog', this.exform.value)
+      .subscribe((data: any) => {
+        console.log(data.hits.map((hit: any) => {
+          return hit._source;
+        }));
+        this.searchResult = data.hits.map((hit: any) => {
+          return hit._source;
+        });
+      });
   }
   searchByKey(event: any) {
-    console.log('event.target', event.target.value);
     this.search.searchByKey('hello', event.target.value).subscribe((data) => {
       console.log(data);
     });

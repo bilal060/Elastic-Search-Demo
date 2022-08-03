@@ -15,7 +15,7 @@ export class ElkFormComponent implements OnInit {
       Category: new FormControl(''),
       Query: new FormControl(),
     });
-    this.search.getAllCategories().subscribe((res: any) => {
+    this.search.getAllCategories('categories_data').subscribe((res: any) => {
       this.categories = res?.hits?.map((hits: any) => {
         return hits._source?.name;
       });
@@ -36,7 +36,8 @@ export class ElkFormComponent implements OnInit {
       });
   }
   searchByKey(event: any) {
-    this.search.searchByKey('categories_data', event.target.value).subscribe((data) => {
+    this.search.searchByKey('hello', event.target.value).subscribe((data) => {
+      console.log(data);
     });
   }
 

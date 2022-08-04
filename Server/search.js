@@ -4,7 +4,8 @@ const client = new Client({ node: "http://localhost:9200" });
 const phraseSearch = async (_index, _type, filters, searchValue) => {
   const hits = [];
   let object = {};
-  if (filters) {
+  if (filters.Category !== '') {
+    console.log("Category:", filters.Category);
     object = {
       bool: {
         filter: [
@@ -45,14 +46,19 @@ const phraseSearch = async (_index, _type, filters, searchValue) => {
   };
 };
 
-const categorySearch = async (_index, _type) => {
+const categorySearch = async (_index, _type,searchValue) => {
   const hits = [];
   // only string values are searchable
+  
+  let query = {
+    index: _index,
+    query: {
+      match: searchValue,
+    },
+    size:20
+  };
   const searchResult = await client
-    .search({
-      index: _index,
-      size: 6942
-    })
+    .search(query)
     .catch((e) => console.log("errr", e));
   if (
     searchResult &&

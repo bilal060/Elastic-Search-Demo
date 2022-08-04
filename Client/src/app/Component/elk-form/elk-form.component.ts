@@ -15,18 +15,13 @@ export class ElkFormComponent implements OnInit {
       Category: new FormControl(''),
       Query: new FormControl(),
     });
-    this.search.getAllCategories('categories_data').subscribe((res: any) => {
-      this.categories = res?.hits?.map((hits: any) => {
-        return hits._source?.name;
-      });
-    });
   }
 
   // defined the array of data
   // set placeholder to MultiSelect input element
   public placeholder: string = 'Select Category';
   SubmitForm() {
-    console.clear()
+    console.clear();
     this.search
       .searchByKey('sample_catalog', this.exform.value)
       .subscribe((data: any) => {
@@ -34,11 +29,27 @@ export class ElkFormComponent implements OnInit {
           return hit._source;
         });
       });
+
+    this.search
+      .getAllCategories('categories_data', this.exform.value.Query)
+      .subscribe((data: any) => {
+        this.categories = data?.hits?.map((hits: any) => {
+          return hits._source?.name;
+        });
+      });
   }
-  searchByKey(event: any) {
-    this.search.searchByKey('hello', event.target.value).subscribe((data) => {
-      console.log(data);
-    });
+
+
+  getCategoriesByValue(event: any) {
+    if (event.target.value.length > 3 || event.target.value.length === 3) {
+      this.search
+        .getAllCategories('categories_data', event.target.value)
+        .subscribe((data: any) => {
+          this.categories = data?.hits?.map((hits: any) => {
+            return hits._source?.name;
+          });
+        });
+    }
   }
 
   ngOnInit(): void {}

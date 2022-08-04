@@ -6,7 +6,7 @@ import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ElkFormComponent } from './Component/elk-form/elk-form.component';
-
+import { ChipListModule } from '@syncfusion/ej2-angular-buttons';
 @NgModule({
   declarations: [AppComponent, ElkFormComponent],
   imports: [
@@ -14,7 +14,7 @@ import { ElkFormComponent } from './Component/elk-form/elk-form.component';
     ReactiveFormsModule,
     MultiSelectModule ,
     HttpClientModule,
-    AppRoutingModule,
+    AppRoutingModule,ChipListModule
   ],
   providers: [],
   bootstrap: [AppComponent],

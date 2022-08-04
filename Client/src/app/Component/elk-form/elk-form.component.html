@@ -20,7 +20,7 @@
   action="/action_page.php"
   style="margin: auto; max-width: 900px"
 >
-  <ejs-multiselect
+  <!-- <ejs-multiselect
     height="50px"
     formControlName="Category"
     id="multiselectelement"
@@ -28,6 +28,17 @@
     width="200"
     popupHeight="500"
     [placeholder]="placeholder"
+  ></ejs-multiselect> -->
+
+  <ejs-multiselect
+    formControlName="Category"
+    id="multiselectelement"
+    [dataSource]="categories"
+    placeholder="Select Maker"
+    popupHeight="500"
+    [placeholder]="placeholder"
+    (keyup)="getCategoriesByValue($event)"
+    #samples2
   ></ejs-multiselect>
 
   <input
@@ -63,6 +74,9 @@ UOMQty: 1
 URLImage: "https://static.grainger.com/rp/s/is/image/Grainger/31TY71_AS01?$S7PRODUCT$" -->
 
 <div class="container">
+  <div class="w-100 d-flex flex-wrap Badges">
+    <span *ngFor="let badge of categories"><ejs-chiplist [text]="badge"></ejs-chiplist></span>
+  </div>
   <table class="table table-hover w-100">
     <thead>
       <tr>
@@ -82,23 +96,21 @@ URLImage: "https://static.grainger.com/rp/s/is/image/Grainger/31TY71_AS01?$S7PRO
         <th>Part Number</th>
         <th>Short Description</th>
         <th>UOM Name</th>
-     
       </tr>
     </thead>
     <tbody>
-
-      <tr *ngFor="let item of searchResult">     
-        <td>{{item.COO}}</td>
-        <td>{{item.COOName}}</td>
-        <td>{{item.CatalogPage}}</td>
-        <td>{{item.Category}}</td>
-        <td>{{item.CustomerPrice}}</td>
-        <td>{{item.MSDSIndicator}}</td>
-        <td>{{item.MfgName}}</td>
-        <td>{{item.MfgPartNumber}}</td>
-        <td>{{item.PartNumber}}</td>
-        <td>{{item.ShortDescription}}</td>
-        <td>{{item.UOMName}}</td>
+      <tr *ngFor="let item of searchResult">
+        <td>{{ item.COO }}</td>
+        <td>{{ item.COOName }}</td>
+        <td>{{ item.CatalogPage }}</td>
+        <td>{{ item.Category }}</td>
+        <td>{{ item.CustomerPrice }}</td>
+        <td>{{ item.MSDSIndicator }}</td>
+        <td>{{ item.MfgName }}</td>
+        <td>{{ item.MfgPartNumber }}</td>
+        <td>{{ item.PartNumber }}</td>
+        <td>{{ item.ShortDescription }}</td>
+        <td>{{ item.UOMName }}</td>
       </tr>
     </tbody>
   </table>

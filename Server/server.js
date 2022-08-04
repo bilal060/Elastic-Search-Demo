@@ -27,8 +27,9 @@ app.get("/search/:index/:type/", async (req, res) => {
 // searching on query
 app.get("/category/:index/:type", async (req, res) => {
   // const { phraseSearch } = require('./SearchEngine');
+  console.log(JSON.parse(req.query.searchValue));
   const { categorySearch } = require("./search");
-  const data = await categorySearch(req.params.index, req.params.type);
+  const data = await categorySearch(req.params.index, req.params.type, JSON.parse(req.query.searchValue));
   res.json(data);
 });
 app.get("/load/:table", async (req, res) => {

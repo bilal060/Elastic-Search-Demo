@@ -10,6 +10,7 @@ export class SearchService {
   searchByKey(index: any, data: any) {
     let searchValue = {ShortDescription: data?.Query};
     let filters = { Category: data?.Category };
+    console.log(filters)
     // let _index = 'category';
     // let _type = '_doc';
 
@@ -20,9 +21,12 @@ export class SearchService {
       )}&filters=${JSON.stringify(filters)}`
     );
   }
-  getAllCategories(index:any) {
+  getAllCategories(index:any, data:any) {
+    let searchValue = {name: data};
     return this.https.get(
-      `http://localhost:3333/category/${index}/_doc`
+      `http://localhost:3333/category/${index}/_doc/?searchValue=${JSON.stringify(
+        searchValue
+      )}`
     );
   }
 }

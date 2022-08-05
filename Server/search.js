@@ -47,9 +47,7 @@ const phraseSearch = async (_index, _type, filters, searchValue) => {
 };
 
 const categorySearch = async (_index, _type,searchValue) => {
-  const hits = [];
-  // only string values are searchable
-  
+  const hits = [];  
   let query = {
     index: _index,
     query: {

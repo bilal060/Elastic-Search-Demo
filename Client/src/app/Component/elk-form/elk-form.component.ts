@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/services/search.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import * as _ from 'lodash';
 @Component({
   selector: 'app-elk-form',
   templateUrl: './elk-form.component.html',
@@ -33,12 +34,13 @@ export class ElkFormComponent implements OnInit {
     this.search
       .getAllCategories('categories_data', this.exform.value.Query)
       .subscribe((data: any) => {
-        this.categories = data?.hits?.map((hits: any) => {
-          return hits._source?.name;
-        });
+        this.categories = _.uniq(_.map(data?.hits, '_source.name'));
+      //  console.log(uniques);
+      //   this.categories = data?.hits?.map((hits: any) => {
+      //     return hits._source?.name;
+      //   });
       });
   }
-
 
   getCategoriesByValue(event: any) {
     if (event.target.value.length > 3 || event.target.value.length === 3) {

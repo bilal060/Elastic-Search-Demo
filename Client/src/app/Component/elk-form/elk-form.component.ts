@@ -35,10 +35,6 @@ export class ElkFormComponent implements OnInit {
       .getAllCategories('categories_data', this.exform.value.Query)
       .subscribe((data: any) => {
         this.categories = _.uniq(_.map(data?.hits, '_source.name'));
-      //  console.log(uniques);
-      //   this.categories = data?.hits?.map((hits: any) => {
-      //     return hits._source?.name;
-      //   });
       });
   }
 

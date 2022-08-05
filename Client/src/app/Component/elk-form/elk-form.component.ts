@@ -17,9 +17,6 @@ export class ElkFormComponent implements OnInit {
       Query: new FormControl(),
     });
   }
-
-  // defined the array of data
-  // set placeholder to MultiSelect input element
   public placeholder: string = 'Select Category';
   SubmitForm() {
     console.clear();

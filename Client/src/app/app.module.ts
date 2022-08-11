@@ -7,14 +7,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ElkFormComponent } from './Component/elk-form/elk-form.component';
 import { ChipListModule } from '@syncfusion/ej2-angular-buttons';
+import { SpellCheckerModule } from 'ngx-spellchecker';
 @NgModule({
   declarations: [AppComponent, ElkFormComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    MultiSelectModule ,
+    MultiSelectModule,
     HttpClientModule,
-    AppRoutingModule,ChipListModule
+    AppRoutingModule,
+    ChipListModule,
+    SpellCheckerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

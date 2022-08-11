@@ -21,7 +21,9 @@
     "@syncfusion/ej2-angular-buttons": "^20.2.38",
     "@syncfusion/ej2-angular-dropdowns": "^20.2.40",
     "lodash-es": "^4.17.21",
+    "ngx-spellchecker": "^1.0.5",
     "rxjs": "~7.5.0",
+    "simple-spellchecker": "^1.0.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

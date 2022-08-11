@@ -16,7 +16,7 @@
 <form
   (ngSubmit)="SubmitForm()"
   [formGroup]="exform"
-  class="example d-flex my-3"
+  class="example position-relative d-flex my-3"
   action="/action_page.php"
   style="margin: auto; max-width: 900px"
 >
@@ -47,35 +47,28 @@
     placeholder="Search.."
     class="search"
     name="search2"
+    (keyup)="searchBykey($event)"
   />
+
+  <div class="suggestyions" *ngIf="suggestions && showSuggestions === true">
+    <ul>
+      <li
+        *ngFor="let suggestion of suggestions"
+        (click)="suggestHandler(suggestion)"
+      >
+        {{ previousValue }} {{ suggestion }}
+      </li>
+    </ul>
+  </div>
+
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 
-<!-- COO: "JP"
-COOName: "Japan"
-CatalogPage: 0
-Category: "Parts"
-CustomerPrice: 306.75
-Family: "Replacement Parts"
-GraingerWebLink: "https://www.grainger.com/Grainger/items/31TY71"
-HazmatFlag: "N"
-LeadTime: 1
-List Price: 322.89
-LongDescription: "Coffing Bottom Block Assembly For Use With Mfr Model Number 08903W 08910W 08917W 08921W 08925W 08932W Fits Brand CM"
-MSDSIndicator: "N"
-MfgName: "COFFING"
-MfgPartNumber: "LHH5047U"
-MinimumShipQty: 1
-PartNumber: "31TY71"
-Segment: "Material Handling"
-ShortDescription: "Coffing Bottom Block Assembly"
-UOMName: "EA"
-UOMQty: 1
-URLImage: "https://static.grainger.com/rp/s/is/image/Grainger/31TY71_AS01?$S7PRODUCT$" -->
-
 <div class="container">
   <div class="w-100 d-flex flex-wrap Badges">
-    <span *ngFor="let badge of categories"><ejs-chiplist [text]="badge"></ejs-chiplist></span>
+    <span *ngFor="let badge of categories"
+      ><ejs-chiplist [text]="badge"></ejs-chiplist
+    ></span>
   </div>
   <table class="table table-hover w-100">
     <thead>

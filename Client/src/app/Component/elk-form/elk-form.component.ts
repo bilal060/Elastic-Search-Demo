@@ -52,13 +52,15 @@ export class ElkFormComponent implements OnInit {
       .subscribe((data: any) => {
         this.categories = _.uniq(_.map(data?.hits, '_source.name'));
       });
+      this.suggestions = undefined;
+      this.showSuggestions = false;
   }
   searchBykey(event: any) {
     this.previousValue = this.exform.value.Query.split(' ')
       .splice(0, this.exform.value.Query.split(' ').length - 1)
       .join(' ');
     this.suggestions = this.dictionary.getSuggestions(
-      event.target.value.split(' ').pop()
+      event.target.value.split(' ').pop(), [30]
     );
     this.showSuggestions = true;
   }
